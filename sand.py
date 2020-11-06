@@ -23,9 +23,9 @@ from map import board as drawn_board
 # except:
 #     bps = 1
 
-h = 15
-w = 15
-bps = 2
+h = len(drawn_board)
+w = len(drawn_board[0])
+bps = 10
 
 '''
 we add a 'mask' to ease count of neighbors on func 'count_neighbors()'.
@@ -124,7 +124,10 @@ def next_state(board):
     # we never iterate/change cells of the mask (first and last rows and cols)
     # we iterate reversed so a sand above another can fall with the one below
     for row in range(h, 0, -1):
-        for col in range(w, 0, -1):
+        start = ((w-1)/2)+1
+        count = 1
+        while start != w+1:
+            col = start
             cell = board[row, col]
             # if it's sand
             if cell == 1:
@@ -140,6 +143,13 @@ def next_state(board):
                     elif new_board[row+1, col-1] == 0:
                         new_board[row+1, col-1] = 1
                         new_board[row, col] = 0
+            start = start + count
+            # print(start)
+            if count > 0:
+                count = (count + 1) * -1
+            else:
+                count = -count
+                count = (count + 1)
 
     # for row in range(h, 0, -1):
     #     for col in range(w, 0, -1):
