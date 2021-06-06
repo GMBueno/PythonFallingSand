@@ -1,4 +1,5 @@
 # PythonFallingSand
 
 Silly demo
-![hourglass](bueno_hourglass.gif)
+
+<img src="bueno_hourglass.gif" alt="hourglass" height="300"/>
